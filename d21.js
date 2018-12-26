@@ -1,16 +1,16 @@
-const fs = require('fs');
-const readline = require('readline');
-async function processLineByLine() {
+const fs = require('fs')
+const readline = require('readline')
 
+async function processLineByLine () {
   const fileStream = fs.createReadStream('box-ids.txt')
   let rl = readline.createInterface({
     input: fileStream,
     crlfDelay: Infinity
-  });
-
-  let twos = threes = 0
+  })
+  let twos, threes
+  twos = threes = 0
   for await (const line of rl) {
-    const strArr = line.toLowerCase().split("").sort().join("").match(/(.)\1+/g);
+    const strArr = line.toLowerCase().split('').sort().join('').match(/(.)\1+/g)
     console.log(line)
     console.log(strArr)
     const counts = new Set()
