@@ -27,7 +27,7 @@ async function processLineByLine () {
   console.log(starters)
 
   // add all edges to graph
-  edges.forEach((edge) => {
+  edges.forEach(edge => {
     graph.addEdge(edge[0], edge[1])
   })
 
@@ -46,19 +46,21 @@ class Node {
   addEdge (node) {
     this.from.push(node)
     node.to.push(this)
-    node.to.forEach( (e) => {
+    node.to.forEach(e => {
       console.log(`Adding to node ${e} for node ${node}`)
     })
   }
 
   removeEdge (to) {
-    this.to = this.to.filter((node) => {
+    this.to = this.to.filter(node => {
       return node !== to
     })
   }
 
   print () {
-    console.log(`{${this.label}, from[${this.from.length}] to[${this.to.length}]`)
+    console.log(
+      `{${this.label}, from[${this.from.length}] to[${this.to.length}]`
+    )
   }
 
   toString () {
@@ -87,7 +89,7 @@ class Graph {
     // console.log(this.nodes.length)
     let available = []
 
-    this.nodes.forEach((n) => {
+    this.nodes.forEach(n => {
       if (n.to.length === 0 && !this.resolved.has(n.label)) {
         available.push(n)
       }
@@ -108,7 +110,7 @@ class Graph {
 
   consumeNode (node) {
     console.log(node.label)
-    node.from.forEach((toNode) => {
+    node.from.forEach(toNode => {
       toNode.removeEdge(node)
     })
     return node
